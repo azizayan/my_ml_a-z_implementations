@@ -7,11 +7,13 @@ X,y = datasets.load_diabetes(return_X_y=True)
 print(X.shape)
 print(X[0])
 
+X = X[:,:-1]
+
 
 X_train, X_test, y_train, y_test = model_selection.train_test_split(X,y, test_size=0.25)
 
 regressor = linear_model.LinearRegression()
-regressor.fit(X,y)
+regressor.fit(X_train,y_train)
 
 y_pred = regressor.predict(X_test)
 np.set_printoptions(precision=2)
