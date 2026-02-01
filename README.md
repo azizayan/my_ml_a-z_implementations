@@ -1,42 +1,20 @@
 
 ## Machine Learning Learning Exercises
 
-This repository documents a series of machine learning experiments conducted as part of a structured, hands-on learning process. Each submodule focuses on the "why" behind the "how," covering data preprocessing, model behavior, and identifying common pitfalls like data leakage and target imbalance.
+This repository documents a series of machine learning experiments conducted as part of a structured, hands-on learning process. Each submodule focuses on the "why" behind the "how," covering data preprocessing, model behavior, and identifying common pitfalls like data leakage and target imbalance. Collection of ML-A-Z style implementations plus small side projects. Covers preprocessing, core regression/classification algorithms, model evaluation, and a few applied mini-projects (pumpkin pricing/color, breast cancer baseline, UFO exploration).
+
+## Regression Methods: 
+multiple linear regression, polynomial regression, support vector regression , decision tree regression, random forest regression; model evaluation scripts (train/test splits, scores).
+## Classification Methods: 
+Logistic regression, k-NN, SVM , kernel SVM, decision tree, random forest, naive Bayes; classification evaluation datasets and scripts with confusion matrices and reports.
 
 ---
 
-## 📊 Additional Project: Pumpkin Price Prediction
+## 📊 Additional Projects: 
+1) Pumpkin Color Prediction: Using USDA pumpkin data, this project cleans and filters bushel sales, builds linear and polynomial regression models to track pie-type pumpkin prices across the growing season, and trains logistic regression classifiers (with tailored encodings and preprocessing) to predict pumpkin color from location, variety, origin, size, and date features. It includes light EDA (seaborn/matplotlib), categorical encodings (ordinal + one-hot), imputation where needed, and reports standard regression errors plus classification accuracy/F1 and full reports on held-out splits.
 
-*An investigation into US pumpkin market data and the limitations of linear regression in imbalanced target spaces.*
+2) Breast Cancer Detection: Logistic regression baseline for the Wisconsin reast cancer dataset with cross validation
 
-### 🛠 Methodology
+3) UFOS(ongoing): Early stage UFO sightings exploration. Currently loads the sightings CSV, keeps a trimmed set of columns (duration seconds, country, latitude, longitude), inspects unique countries, and drops missing values as a first cleaning step. End goal: complete a geospatial/temporal analysis , map sighting hotspots, model duration patterns by region/time, and build simple classifiers or anomaly detectors to flag unusual sightings, once the cleaned dataset and feature set are finalized.
 
-We focused on **bushel carton packages** to maintain pricing consistency across the dataset.
 
-* **Feature Set:** `Package` (Categorical), `Origin` (Categorical), `Month` (Numerical)
-* **Target:** `Average Price`
-* **Pipeline:** * **Preprocessing:** `One-Hot Encoding` via `ColumnTransformer`.
-* **Model:** `Linear Regression` (Baseline).
-
-### 📈 Evaluation & Results
-
-The model was evaluated against a **mean predictor** baseline using  and Mean Absolute Error (MAE).
-
-| Metric | Observation |
-| --- | --- |
-| **Score** | Relatively high, driven by data density. |
-| **MAE** | Low in the $15–$20 range; high for outliers. |
-| **Distribution** | Strong performance in the dominant low-price region. |
-
-> [!IMPORTANT]
-> **Stress Testing Results:** When tested against synthetic high-price scenarios, the model systematically underestimated values, revealing a clear **regression-to-the-mean** behavior.
-
----
-
-## 🧠 Key Analytical Insights
-
-* **The Metric Trap:** High global performance metrics (like ) can obscure significant weaknesses in underrepresented regions of the target space.
-* **Extrapolation Limits:** Linear regression, especially with additive categorical encodings, has limited capacity to predict values outside the dense training "clusters."
-* **Stress Testing:** Manually constructing synthetic test cases is essential for revealing how a model behaves under edge-case conditions.
-
----
