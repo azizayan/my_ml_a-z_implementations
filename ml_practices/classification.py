@@ -81,7 +81,7 @@ X_train, X_test, y_train, y_test = train_test_split(cuisines_feature_df, cuisine
 
 
 lr = LogisticRegression(multi_class='ovr', solver='liblinear')
-model = lr.fit(X_train, np.to_numpy(y_train))
+model = lr.fit(X_train, np.ravel(y_train))
 
 accuracy = model.score(X_test, y_test)
 print("Accuracy is {}".format(accuracy))
