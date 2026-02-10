@@ -79,8 +79,7 @@ cuisines_feature_df = cuisines_df.drop(['Unnamed: 0','cuisine'],axis = 1)
 X_train, X_test, y_train, y_test = train_test_split(cuisines_feature_df, cuisines_label_df, test_size=0.3)
 
 
-
-lr = LogisticRegression(multi_class='ovr', solver='liblinear')
+lr = LogisticRegression(solver='lbfgs', max_iter=1000)
 model = lr.fit(X_train, np.ravel(y_train))
 
 accuracy = model.score(X_test, y_test)
